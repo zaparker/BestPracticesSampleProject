@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace BestPracticesSampleProject.Web.Controllers
 {
+    [RoutePrefix("api/projects")]
     public class ProjectsController : ApiController
     {
         private readonly IProjectService service;
@@ -19,6 +20,11 @@ namespace BestPracticesSampleProject.Web.Controllers
             this.service = service;
         }
 
+        /// <summary>
+        /// Retrieves all projects in department
+        /// </summary>
+        /// <param name="departmentId">The id of the department to get info for</param>
+        /// <returns>The matching projects.</returns>
         public Task<IEnumerable<Project>> GetByDepartmentId([FromUri]int departmentId)
         {
             return service.ListByDepartmentIdAsync(departmentId);

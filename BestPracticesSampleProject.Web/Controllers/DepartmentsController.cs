@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace BestPracticesSampleProject.Web.Controllers
 {
+    [RoutePrefix("api/departments")]
     public class DepartmentsController : ApiController
     {
         private readonly IDepartmentService service;

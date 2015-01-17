@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace BestPracticesSampleProject.Web.Models
@@ -14,7 +15,7 @@ namespace BestPracticesSampleProject.Web.Models
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<Project> Projects { get; set; }
     }
 }
