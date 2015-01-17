@@ -10,9 +10,9 @@ namespace BestPracticesSampleProject.Web.Services
 {
     public class ProjectService : IProjectService
     {
-        private readonly IRepository<Project> repository;
+        private readonly IProjectRepository repository;
 
-        public ProjectService(IRepository<Project> repository)
+        public ProjectService(IProjectRepository repository)
         {
             this.repository = repository;
         }

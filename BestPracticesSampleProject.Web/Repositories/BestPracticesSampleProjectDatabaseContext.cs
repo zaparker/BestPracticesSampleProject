@@ -12,5 +12,9 @@ namespace BestPracticesSampleProject.Web.Repositories
         public DbSet<Department> Departments { get; set; }
 
         public DbSet<Project> Projects { get; set; }
+
+        public BestPracticesSampleProjectDatabaseContext()
+            : base() { 
+        }
     }
 }

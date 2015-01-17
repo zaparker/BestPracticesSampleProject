@@ -8,19 +8,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BestPracticesSampleProject.Web.DependencyInjection.Windsor
+namespace BestPracticesSampleProject.Web
 {
     public class RepositoryInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
+            container.Register(Component.For<BestPracticesSampleProjectDatabaseContext>()
+                .ImplementedBy<BestPracticesSampleProjectDatabaseContext>().LifestyleTransient());
             container.Register(Classes.FromThisAssembly()
-                                .BasedOn<IRepository<Department>>()
+                                .BasedOn<IProjectRepository>().WithServiceBase()
                                 .LifestyleTransient());
             container.Register(Classes.FromThisAssembly()
-                                .BasedOn<IRepository<Project>>()
+                                .BasedOn<IDepartmentRepository>().WithServiceBase()
                                 .LifestyleTransient());
-            container.Register(Component.For<BestPracticesSampleProjectDatabaseContext>().UsingFactoryMethod(ctx => new BestPracticesSampleProjectDatabaseContext()));
         }
     }
 }

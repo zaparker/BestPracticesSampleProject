@@ -7,17 +7,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BestPracticesSampleProject.Web.DependencyInjection.Windsor
+namespace BestPracticesSampleProject.Web
 {
     public class ServiceInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(Classes.FromThisAssembly()
-                                .BasedOn<IDepartmentService>()
+                                .BasedOn<IDepartmentService>().WithServiceBase()
                                 .LifestyleTransient());
             container.Register(Classes.FromThisAssembly()
-                                .BasedOn<IProjectService>()
+                                .BasedOn<IProjectService>().WithServiceBase()
                                 .LifestyleTransient());
         }
     }

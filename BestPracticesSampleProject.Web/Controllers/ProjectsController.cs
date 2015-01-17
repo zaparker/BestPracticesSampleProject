@@ -25,12 +25,13 @@ namespace BestPracticesSampleProject.Web.Controllers
         /// </summary>
         /// <param name="departmentId">The id of the department to get info for</param>
         /// <returns>The matching projects.</returns>
+        [Route("")]
         public Task<IEnumerable<Project>> GetByDepartmentId([FromUri]int departmentId)
         {
             return service.ListByDepartmentIdAsync(departmentId);
         }
 
-        [Route(Name = "GetProjectById")]
+        [Route("{id}", Name = "GetProjectById")]
         public Task<Project> GetById(int id)
         {
             return service.GetByIdAsync(id);

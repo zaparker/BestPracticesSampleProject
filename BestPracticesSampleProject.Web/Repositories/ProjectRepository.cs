@@ -7,9 +7,9 @@ using System.Web;
 
 namespace BestPracticesSampleProject.Web.Repositories
 {
-    public class ProjectRepository : IRepository<Project>
+    public class ProjectRepository : IProjectRepository
     {
-        private BestPracticesSampleProjectDatabaseContext dbContext;
+        private readonly BestPracticesSampleProjectDatabaseContext dbContext;
 
         public ProjectRepository(BestPracticesSampleProjectDatabaseContext dbContext) 
         {

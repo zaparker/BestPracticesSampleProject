@@ -10,9 +10,9 @@ namespace BestPracticesSampleProject.Web.Services
 {
     public class DepartmentService : IDepartmentService
     {
-        private readonly IRepository<Department> repository;
+        private readonly IDepartmentRepository repository;
 
-        public DepartmentService(IRepository<Department> repository)
+        public DepartmentService(IDepartmentRepository repository)
         {
             this.repository = repository;
         }

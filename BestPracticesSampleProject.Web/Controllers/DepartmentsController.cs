@@ -20,12 +20,13 @@ namespace BestPracticesSampleProject.Web.Controllers
             this.service = service;
         }
 
+        [Route("")]
         public Task<IEnumerable<Department>> GetAll()
         {
             return service.ListAllAsync();
         }
 
-        [Route(Name = "GetDepartmentById")]
+        [Route("{id}", Name = "GetDepartmentById")]
         public Task<Department> GetById(int id)
         {
             return service.GetByIdAsync(id);
