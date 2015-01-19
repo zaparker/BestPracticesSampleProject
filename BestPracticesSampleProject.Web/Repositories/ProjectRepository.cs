@@ -21,17 +21,19 @@ namespace BestPracticesSampleProject.Web.Repositories
             return dbContext.Projects;
         }
 
-        public Task CreateAsync(Project Project)
+        public Task CreateAsync(Project project)
         {
-            dbContext.Projects.Add(Project);
+            dbContext.Projects.Add(project);
             return Task.FromResult(0);
         }
 
-        public async Task UpdateAsync(Project Project)
+        public async Task UpdateAsync(Project project)
         {
-            var original = await dbContext.Projects.FindAsync(Project.Id);
+            if (project == null)
+                throw new ArgumentNullException("project");
+            var original = await dbContext.Projects.FindAsync(project.Id);
             var entry = dbContext.Entry<Project>(original);
-            entry.CurrentValues.SetValues(Project);
+            entry.CurrentValues.SetValues(project);
         }
 
         public async Task DeleteAsync(int id)

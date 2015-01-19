@@ -11,25 +11,26 @@ using BestPracticesSampleProject.Web.Repositories;
 namespace BestPracticesSampleProject.Web.Tests.Services
 {
     [TestClass]
-    public class DepartmentServiceTest
+    public class ProjectServiceTest
     {
-        private DepartmentService GetService()
+        private ProjectService GetService()
         {
-            var items = new List<Department>();
-            items.Add(new Department { Id = 0, Name = "Test Department 1" });
-            items.Add(new Department { Id = 1, Name = "Test Department 2" });
+            var items = new List<Project>();
+            items.Add(new Project { Id = 0, Name = "Test Project 1", DepartmentId = 1 });
+            items.Add(new Project { Id = 1, Name = "Test Project 2", DepartmentId = 1 });
+            items.Add(new Project { Id = 2, Name = "Test Project 3", DepartmentId = 0 });
 
             var queryable = items.AsQueryable();
 
-            var set = new Mock<IQueryable<Department>>();
+            var set = new Mock<IQueryable<Project>>();
             set.Setup(m => m.GetEnumerator()).Returns(queryable.GetEnumerator());
             set.Setup(m => m.Expression).Returns(queryable.Expression);
             set.Setup(m => m.Provider).Returns(queryable.Provider);
 
-            var repository = new Mock<IDepartmentRepository>();
+            var repository = new Mock<IProjectRepository>();
             repository.Setup(m => m.GetQueryable()).Returns(set.Object);
 
-            return new DepartmentService(repository.Object);
+            return new ProjectService(repository.Object);
         }
 
         [TestMethod]
@@ -39,7 +40,7 @@ namespace BestPracticesSampleProject.Web.Tests.Services
             var svc = GetService();
 
             // Act
-            var results = await svc.ListAllAsync();
+            var results = await svc.ListByDepartmentIdAsync(1);
 
             // Assert
             Assert.AreEqual(2, results.Count());

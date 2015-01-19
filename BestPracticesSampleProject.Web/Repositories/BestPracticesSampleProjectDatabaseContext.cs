@@ -9,9 +9,9 @@ namespace BestPracticesSampleProject.Web.Repositories
 {
     public class BestPracticesSampleProjectDatabaseContext : DbContext
     {
-        public DbSet<Department> Departments { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
 
-        public DbSet<Project> Projects { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
 
         public BestPracticesSampleProjectDatabaseContext()
             : base() { 

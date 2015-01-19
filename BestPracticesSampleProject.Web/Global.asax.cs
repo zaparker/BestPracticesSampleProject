@@ -11,8 +11,6 @@ namespace BestPracticesSampleProject.Web
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
-
-
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -20,7 +18,7 @@ namespace BestPracticesSampleProject.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            ContainerConfig.Config();
+            GlobalConfiguration.Configure(ContainerConfig.Config);
         }
 
         protected void Application_End()

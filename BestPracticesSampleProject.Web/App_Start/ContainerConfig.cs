@@ -12,19 +12,16 @@ namespace BestPracticesSampleProject.Web
 {
     public static class ContainerConfig
     {
-        public static IWindsorContainer container;
+        private static IWindsorContainer container;
 
         public static IWindsorContainer Container { get { return container; } }
 
-        public static void Config()
+        public static void Config(HttpConfiguration configuration)
         {
-            container = new WindsorContainer()
-                .Install(FromAssembly.This());
+            container = new WindsorContainer().Install(FromAssembly.This());
             var controllerFactory = new WindsorControllerFactory(container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
-            GlobalConfiguration.Configuration.Services.Replace(
-            typeof(IHttpControllerActivator),
-            new WindsorCompositionRoot(container));
+            configuration.Services.Replace( typeof(IHttpControllerActivator), new WindsorCompositionRoot(container));
         }
     }
 }

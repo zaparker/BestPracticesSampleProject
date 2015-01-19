@@ -29,6 +29,8 @@ namespace BestPracticesSampleProject.Web.Repositories
 
         public async Task UpdateAsync(Department department)
         {
+            if (department == null)
+                throw new ArgumentNullException("department");
             var original = await dbContext.Departments.FindAsync(department.Id);
             var entry = dbContext.Entry<Department>(original);
             entry.CurrentValues.SetValues(department);
