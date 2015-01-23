@@ -21,7 +21,7 @@ namespace BestPracticesSampleProject.Web
             container = new WindsorContainer().Install(FromAssembly.This());
             var controllerFactory = new WindsorControllerFactory(container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
-            configuration.Services.Replace( typeof(IHttpControllerActivator), new WindsorCompositionRoot(container));
+            configuration.Services.Replace( typeof(IHttpControllerActivator), new WindsorHttpControllerActivator(container));
         }
     }
 }

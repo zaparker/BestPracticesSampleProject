@@ -9,15 +9,29 @@ using System.Web.Http.Dispatcher;
 
 namespace BestPracticesSampleProject.Web
 {
-    public class WindsorCompositionRoot : IHttpControllerActivator
+    /// <summary>
+    /// Windsor activator for creating Web API controllers with dependency injection.
+    /// </summary>
+    public class WindsorHttpControllerActivator : IHttpControllerActivator
     {
         private readonly IWindsorContainer container;
 
-        public WindsorCompositionRoot(IWindsorContainer container)
+        /// <summary>
+        /// Creates a new WindsorHttpControllerActivator using the specified container.
+        /// </summary>
+        /// <param name="container">The container which will contain the registered controllers.</param>
+        public WindsorHttpControllerActivator(IWindsorContainer container)
         {
             this.container = container;
         }
 
+        /// <summary>
+        /// For the given request, creates the requested Web API controller and injects any dependencies it may have.
+        /// </summary>
+        /// <param name="request">The request which the controller will serve.</param>
+        /// <param name="controllerDescriptor">Not used.</param>
+        /// <param name="controllerType">The type of controller to create.</param>
+        /// <returns>The newly created Web API controller.</returns>
         public IHttpController Create(HttpRequestMessage request,
             HttpControllerDescriptor controllerDescriptor, Type controllerType)
         {

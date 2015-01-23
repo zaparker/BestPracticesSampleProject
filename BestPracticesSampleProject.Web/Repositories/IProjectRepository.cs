@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BestPracticesSampleProject.Web.Repositories
 {
+    /// <summary>
+    /// Defines the CRUD operations for a project repository.
+    /// </summary>
     public interface IProjectRepository : IRepository<Project>
     {
     }

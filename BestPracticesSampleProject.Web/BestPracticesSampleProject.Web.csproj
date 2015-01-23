@@ -167,7 +167,7 @@
     <Compile Include="DependencyInjection\Windsor\ControllerInstaller.cs" />
     <Compile Include="DependencyInjection\Windsor\RepositoryInstaller.cs" />
     <Compile Include="DependencyInjection\Windsor\ServiceInstaller.cs" />
-    <Compile Include="DependencyInjection\Windsor\WindsorCompositionRoot.cs" />
+    <Compile Include="DependencyInjection\Windsor\WindsorHttpControllerActivator.cs" />
     <Compile Include="DependencyInjection\Windsor\WindsorControllerFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
